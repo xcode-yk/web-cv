@@ -62,7 +62,7 @@ function initScrollspy() {
 }
 
 function initScrollReveal() {
-  const elements = document.querySelectorAll(".anim-on-scroll, .edu-reveal");
+  const elements = document.querySelectorAll(".anim-on-scroll, .edu-reveal, .section-head");
   if (!elements.length) return;
 
   const observer = new IntersectionObserver(
