@@ -49,6 +49,36 @@
     transform: translateY(0);
   }
 
+  .contact-card {
+    @apply flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl px-5 py-4 transition-all duration-300 ease-out;
+    @apply hover:bg-accent hover:border-accent hover:shadow-[0_8px_28px_-6px_rgba(153,58,20,0.6)] hover:-translate-y-1 active:translate-y-0 active:scale-95;
+  }
+
+  .contact-icon {
+    @apply flex items-center justify-center w-11 h-11 rounded-full bg-white/10 text-white shrink-0 transition-colors duration-300;
+  }
+
+  .contact-card:hover .contact-icon {
+    @apply bg-white/20;
+  }
+
+  .contact-label {
+    @apply block text-base font-semibold text-white;
+  }
+
+  .contact-hint {
+    @apply block text-sm text-white/50 transition-colors duration-300;
+  }
+
+  .contact-card:hover .contact-hint {
+    @apply text-white/80;
+  }
+
+  .form-input {
+    @apply w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none transition-colors duration-200;
+    @apply focus:border-accent focus:bg-white/10;
+  }
+
   .skill-chip {
     @apply relative overflow-hidden bg-surface text-text-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out border border-border;
     @apply hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_6px_20px_-4px_rgba(153,58,20,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95;

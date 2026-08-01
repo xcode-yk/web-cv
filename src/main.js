@@ -1,9 +1,3 @@
-const CONTACT = {
-  phone: "+6283836186053",
-  email: "ryan.fahri03@gmail.com",
-  address: "Kab. Klaten, Jawa Tengah",
-};
-
 document.addEventListener("DOMContentLoaded", () => {
   initParticles();
   initHamburger();
@@ -13,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   if (isLocal()) initElementPicker();
   initTypewriter();
+  initContactForm();
 });
 
 function isLocal() {
@@ -271,5 +266,58 @@ function initElementPicker() {
     btn.style.background = "#C44D2B";
     document.addEventListener("mouseover", onHover, true);
     document.addEventListener("click", onClick, true);
+  });
+}
+
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+  const status = document.getElementById("cf-status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+
+    const data = new FormData(form);
+    const payload = Object.fromEntries(data.entries());
+
+    const email = (payload.email || "").trim().toLowerCase();
+    if (!email.endsWith("@gmail.com")) {
+      status.textContent = "Only Gmail addresses are accepted.";
+      status.classList.remove("hidden", "text-sage");
+      status.classList.add("text-coral");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+    status.classList.add("hidden");
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/ryan.fahri03@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        form.reset();
+        status.textContent = "Message sent successfully. I'll get back to you soon.";
+        status.classList.remove("hidden", "text-coral");
+        status.classList.add("text-sage");
+      } else {
+        status.textContent = "Something went wrong. Please try again.";
+        status.classList.remove("hidden", "text-sage");
+        status.classList.add("text-coral");
+      }
+    } catch (err) {
+      status.textContent = "Network error. Please try again.";
+      status.classList.remove("hidden", "text-sage");
+      status.classList.add("text-coral");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
   });
 }
