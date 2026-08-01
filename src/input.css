@@ -7,9 +7,59 @@
     @apply bg-glass-bg backdrop-blur-xl border border-glass-border rounded-2xl;
   }
 
+  .exp-card {
+    @apply glass-card transition-all duration-300 ease-out;
+    @apply hover:shadow-[0_12px_32px_-8px_rgba(153,58,20,0.25)] hover:-translate-y-1;
+  }
+
+  .exp-card li {
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .exp-card.in-view li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .exp-card li:nth-child(1) { transition-delay: 0.1s; }
+  .exp-card li:nth-child(2) { transition-delay: 0.2s; }
+  .exp-card li:nth-child(3) { transition-delay: 0.3s; }
+  .exp-card li:nth-child(4) { transition-delay: 0.4s; }
+  .exp-card li:nth-child(5) { transition-delay: 0.5s; }
+  .exp-card li:nth-child(6) { transition-delay: 0.6s; }
+
+  .edu-card {
+    @apply glass-card p-7 transition-all duration-300 ease-out;
+    @apply hover:shadow-[0_12px_32px_-8px_rgba(153,58,20,0.25)] hover:-translate-y-1;
+  }
+
+  .edu-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .edu-reveal:nth-child(1) { transition-delay: 0.1s; }
+  .edu-reveal:nth-child(2) { transition-delay: 0.25s; }
+
+  .edu-reveal.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .skill-chip {
-    @apply bg-surface text-text-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out border border-border;
-    @apply hover:bg-accent hover:text-white hover:shadow-[0_0_12px_2px_rgba(153,58,20,0.3)];
+    @apply relative overflow-hidden bg-surface text-text-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out border border-border;
+    @apply hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_6px_20px_-4px_rgba(153,58,20,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
+  }
+
+  .skill-chip::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full transition-transform duration-500 ease-out pointer-events-none;
+  }
+
+  .skill-chip:hover::after {
+    @apply translate-x-full;
   }
 
   .anim-on-scroll {
@@ -23,24 +73,74 @@
     transform: translateY(0);
   }
 
+  .nav-link {
+    @apply relative text-text-secondary px-3 py-2 text-sm font-medium transition-colors duration-200 ease-out;
+    @apply hover:text-accent;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-3 right-3 bottom-0 h-0.5 bg-accent rounded-full scale-x-0 origin-left transition-transform duration-300 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+
   .nav-link.active {
     @apply text-accent font-semibold;
   }
 
+  .nav-link.active::after {
+    @apply scale-x-100;
+  }
+
   .btn-primary {
-    @apply bg-accent text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 ease-out;
-    @apply hover:bg-accent-hover hover:scale-105 hover:shadow-lg;
+    @apply relative overflow-hidden bg-accent text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 ease-out border border-accent;
+    @apply hover:bg-accent-hover hover:border-accent-hover hover:shadow-[0_6px_24px_-4px_rgba(153,58,20,0.65)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
+  }
+
+  .btn-primary::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full transition-transform duration-500 ease-out pointer-events-none;
+  }
+
+  .btn-primary:hover::after {
+    @apply translate-x-full;
   }
 
   .btn-secondary {
-    @apply border border-border text-text-primary px-6 py-3 rounded-lg font-medium transition-all duration-200 ease-out;
-    @apply hover:border-accent hover:text-accent hover:scale-105;
+    @apply relative overflow-hidden border border-border text-text-primary px-6 py-3 rounded-lg font-medium transition-all duration-300 ease-out;
+    @apply hover:border-accent hover:text-accent hover:shadow-[0_6px_24px_-4px_rgba(153,58,20,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
+  }
+
+  .btn-secondary::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-accent/15 to-transparent -translate-x-full transition-transform duration-500 ease-out pointer-events-none;
+  }
+
+  .btn-secondary:hover::after {
+    @apply translate-x-full;
+  }
+
+  .nav-btn {
+    @apply relative bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-out overflow-hidden border border-accent;
+    @apply hover:bg-accent-hover hover:border-accent-hover hover:shadow-[0_6px_24px_-4px_rgba(153,58,20,0.65)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
+  }
+
+  .nav-btn::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full transition-transform duration-500 ease-out;
+  }
+
+  .nav-btn:hover::after {
+    @apply translate-x-full;
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
   }
 
   @media (prefers-reduced-motion: reduce) {

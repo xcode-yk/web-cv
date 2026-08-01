@@ -24,7 +24,8 @@ module.exports = {
         'glass-bg': 'rgba(255, 255, 255, 0.6)',
       },
       fontFamily: {
-        'sans': ['Inter', 'sans-serif'],
+        'sans': ['DM Sans', 'sans-serif'],
+        'heading': ['Space Grotesk', 'sans-serif'],
       },
       backdropBlur: {
         'xl': '16px',
