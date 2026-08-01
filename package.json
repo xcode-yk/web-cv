@@ -1,0 +1,20 @@
+{
+  "name": "web-cv",
+  "version": "1.0.0",
+  "description": "Ryan Fahri Atanto - Professional Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [
+    "portfolio",
+    "tailwindcss",
+    "vanillajs"
+  ],
+  "author": "Ryan Fahri Atanto",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
