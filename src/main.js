@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isLocal()) initElementPicker();
   initTypewriter();
   initContactForm();
+  initHeroEntrance();
 });
 
 function isLocal() {
@@ -164,7 +165,7 @@ function initTypewriter() {
     }
     el.textContent = text.slice(0, start);
     if (start < text.length) {
-      setTimeout(() => type(start + 1), 15);
+      setTimeout(() => type(start + 1), 28);
     }
   }
 
@@ -319,5 +320,18 @@ function initContactForm() {
       btn.disabled = false;
       btn.textContent = original;
     }
+  });
+}
+
+function initHeroEntrance() {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const items = document.querySelectorAll(".hero-item");
+  const particles = document.getElementById("particles-js");
+  if (particles) particles.classList.add("visible");
+
+  requestAnimationFrame(() => {
+    items.forEach((item) => item.classList.add("visible"));
   });
 }
