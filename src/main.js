@@ -11,9 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initNavbarScroll();
   initSmoothScroll();
-  initElementPicker();
+  if (isLocal()) initElementPicker();
   initTypewriter();
 });
+
+function isLocal() {
+  const host = window.location.hostname;
+  return host === "localhost" || host === "127.0.0.1" || host === "";
+}
 
 function initParticles() {
   const container = document.getElementById("particles-js");
